@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+.venv/
+venv/
+
+outputs/
+data/
+
+*.pt
+*.pth
+*.ckpt
+*.log
