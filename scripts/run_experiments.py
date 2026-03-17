@@ -65,7 +65,10 @@ def run_cmd(cmd: List[str], dry_run: bool = False) -> int:
     print(' '.join(cmd))
     if dry_run:
         return 0
-    proc = subprocess.run(cmd, cwd=PROJECT_ROOT)
+    env = os.environ.copy()
+    existing = env.get('PYTHONPATH', '')
+    env['PYTHONPATH'] = PROJECT_ROOT if not existing else PROJECT_ROOT + os.pathsep + existing
+    proc = subprocess.run(cmd, cwd=PROJECT_ROOT, env=env)
     return int(proc.returncode)
 
 
